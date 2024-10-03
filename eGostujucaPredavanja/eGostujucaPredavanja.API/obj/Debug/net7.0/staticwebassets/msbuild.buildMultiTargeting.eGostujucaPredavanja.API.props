@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\eGostujucaPredavanja.API.props" />
+</Project>
