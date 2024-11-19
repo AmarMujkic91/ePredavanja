@@ -164,3 +164,4 @@ C:\Users\AmarMujkic\Downloads\ePredavanja\eGostujucaPredavanja\eGostujucaPredava
 C:\Users\AmarMujkic\Downloads\ePredavanja\eGostujucaPredavanja\eGostujucaPredavanja.API\obj\Debug\net7.0\eGostujucaPredavanja.API.pdb
 C:\Users\AmarMujkic\Downloads\ePredavanja\eGostujucaPredavanja\eGostujucaPredavanja.API\obj\Debug\net7.0\eGostujucaPredavanja.API.genruntimeconfig.cache
 C:\Users\AmarMujkic\Downloads\ePredavanja\eGostujucaPredavanja\eGostujucaPredavanja.API\obj\Debug\net7.0\ref\eGostujucaPredavanja.API.dll
+C:\Users\AmarMujkic\Downloads\ePredavanja\eGostujucaPredavanja\eGostujucaPredavanja.API\bin\Debug\net7.0\System.Linq.Dynamic.Core.dll

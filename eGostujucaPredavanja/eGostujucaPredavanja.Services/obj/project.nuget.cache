@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GW3xsKnPzIWjTAHeU/tj3ANSGzViRY48j7j9DAXdj+bqZkpUVrc4IQGYaPtrKW2tRWoW5UbSmWic8Fb/FKpNUQ==",
+  "dgSpecHash": "a2WQzB973xKNtA1STnMtbEzdWCuesrOOj0ASdDSZ/ENbr8ei5BJ3HNcikuC8Ml4iKDXU8mFluoKEgKmNHcfzXQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\AmarMujkic\\Downloads\\ePredavanja\\eGostujucaPredavanja\\eGostujucaPredavanja.Services\\eGostujucaPredavanja.Services.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,7 @@
     "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.formats.asn1\\5.0.0\\system.formats.asn1.5.0.0.nupkg.sha512",
     "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.35.0\\system.identitymodel.tokens.jwt.6.35.0.nupkg.sha512",
     "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.linq.dynamic.core\\1.3.10\\system.linq.dynamic.core.1.3.10.nupkg.sha512",
     "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\AmarMujkic\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
