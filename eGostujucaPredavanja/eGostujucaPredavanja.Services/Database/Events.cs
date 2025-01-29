@@ -26,6 +26,10 @@ namespace eGostujucaPredavanja.Services.Database
 
         public byte[]? Slika { get; set; }
 
+        public string? StateMachine { get; set; }
+
+        public int EventTypeId { get; set; }
+
         public virtual ICollection<Sessions> Sessions { get; } = new List<Sessions>(); // Jedan event moze imat vise predavanja
 
         public virtual ICollection<UserEvents> UserEvents { get; } = new List<UserEvents>();

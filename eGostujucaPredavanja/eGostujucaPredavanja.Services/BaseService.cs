@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services
 {
-    public class BaseService<TModel, TSearch, TDbEntity> : IService<TModel, TSearch> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
+    public abstract class BaseService<TModel, TSearch, TDbEntity> : IService<TModel, TSearch> where TModel : class where TSearch : BaseSearchObject where TDbEntity : class
     {
         public eGostujucaPredavanjaContext _dbContext { get; set; }
         public IMapper _mapper { get; set; }
@@ -22,7 +22,7 @@ namespace eGostujucaPredavanja.Services
             _mapper = mapper;
         }
 
-        public TModel GetById(int id)
+        public virtual TModel GetById(int id)
         {
             var entity = _dbContext.Set<TDbEntity>().Find(id);
             if (entity != null)
@@ -35,7 +35,7 @@ namespace eGostujucaPredavanja.Services
             }
         }
 
-        public Model.PagedResult<TModel> GetList(TSearch search)
+        public virtual Model.PagedResult<TModel> GetList(TSearch search)
         {
             var query = _dbContext.Set<TDbEntity>().AsQueryable();
 
@@ -61,7 +61,7 @@ namespace eGostujucaPredavanja.Services
             return pagedResult;
         }
 
-        public IQueryable<TDbEntity> AddFilter(TSearch search, IQueryable<TDbEntity> query)
+        public virtual IQueryable<TDbEntity> AddFilter(TSearch search, IQueryable<TDbEntity> query)
         {
             return query;
         }

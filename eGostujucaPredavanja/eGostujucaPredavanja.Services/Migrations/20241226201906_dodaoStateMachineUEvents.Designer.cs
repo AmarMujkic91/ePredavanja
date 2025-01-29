@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eGostujucaPredavanja.Services.Database;
 
@@ -11,9 +12,11 @@ using eGostujucaPredavanja.Services.Database;
 namespace eGostujucaPredavanja.Services.Migrations
 {
     [DbContext(typeof(eGostujucaPredavanjaContext))]
-    partial class eGostujucaPredavanjaContextModelSnapshot : ModelSnapshot
+    [Migration("20241226201906_dodaoStateMachineUEvents")]
+    partial class dodaoStateMachineUEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -21,5 +21,11 @@ namespace eGostujucaPredavanja.API.Controllers
         {
             return _service.GetList(searchObject);
         }
+
+        [HttpGet("{id}")]
+        public virtual TModel GetById(int id)
+        {
+            return _service.GetById(id);
+        }
     }
 }

@@ -8,30 +8,10 @@ namespace eGostujucaPredavanja.API.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseCRUDController<Model.Users,UsersSearchObject,UsersInsertRequests,UsersUpdateRequests>
     {
-        protected IUsersService _services;
-
-        public UsersController(IUsersService services)
+        public UsersController(IUsersService services) : base(services)
         {
-            _services = services;
-        }
-
-        [HttpGet]
-        public virtual PagedResult<Users> GetList([FromQuery]UsersSearchObject searchObject)
-        {
-            return _services.GetList(searchObject);
-        }
-
-        [HttpPost]
-        public virtual Users Insert(UsersInsertRequests request)
-        {
-            return _services.Insert(request);
-        }
-
-        [HttpPut("{id}")]
-        public virtual Users Update(int id, UsersUpdateRequests request) {
-            return _services.Update(id,request);
         }
     }
 }

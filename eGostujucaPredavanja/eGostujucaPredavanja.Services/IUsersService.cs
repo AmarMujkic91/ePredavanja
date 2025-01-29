@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services
 {
-    public interface IUsersService
+    public interface IUsersService : ICRUDService<Model.Users,UsersSearchObject,UsersInsertRequests,UsersUpdateRequests>
     {
-        PagedResult<Model.Users> GetList(UsersSearchObject searchObject);
+        //PagedResult<Model.Users> GetList(UsersSearchObject searchObject);
 
-        Users Insert(UsersInsertRequests request);
+        //Users Insert(UsersInsertRequests request);
 
-        Users Update(int id, UsersUpdateRequests request);
+        //Users Update(int id, UsersUpdateRequests request);
+
+        Model.Users Login(string username, string password);
     }
 }
