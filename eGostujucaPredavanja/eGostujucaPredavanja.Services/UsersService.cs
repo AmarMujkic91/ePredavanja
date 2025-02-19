@@ -20,80 +20,12 @@ namespace eGostujucaPredavanja.Services
     {
         ILogger<UsersService> _logger;
 
+        AdminUsersUpdateRequests adminUpdateR;
+
         public UsersService(eGostujucaPredavanjaContext dbContext, IMapper mapper, ILogger<UsersService> logger) : base(dbContext,mapper)
         {
             _logger = logger;
         }
-
-        //public virtual Model.PagedResult<Model.Users> GetList(UsersSearchObject searchObject)
-        //{   
-        //    var query = _dbContext.Users.AsQueryable();
-
-        //    int count = query.Count();
-
-        //    if (!string.IsNullOrWhiteSpace(searchObject?.FirstNameGTE))
-        //    {
-        //        query = query.Where(x => x.Firstname.StartsWith(searchObject.FirstNameGTE));
-        //    }
-
-        //    if (!string.IsNullOrWhiteSpace(searchObject?.LastNameGTE))
-        //    {
-        //        query = query.Where(x => x.Lastname.StartsWith(searchObject.LastNameGTE));
-        //    }
-        //    if (!string.IsNullOrWhiteSpace(searchObject?.Email))
-        //    {
-        //        query = query.Where(x => x.Email==searchObject.Email);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(searchObject?.UserName))
-        //    {
-        //        query = query.Where(x => x.UserName==searchObject.UserName);
-        //    }
-
-        //    if(searchObject.IsUserPositionIncluded == true)
-        //    {
-        //        query = query.Include(x => x.UserPositions).ThenInclude(x => x.Positions);
-        //    }
-
-        //    if(!string.IsNullOrWhiteSpace(searchObject.OrderBy))
-        //    {
-        //        var item = searchObject.OrderBy.Split(' ');
-        //        if(item.Length > 2 || item.Length == 0) 
-        //        {
-        //            throw new ApplicationException("You can only sort by one field ");
-        //        }
-        //        if (item.Length == 1)
-        //        {
-        //            query = query.OrderBy("@0", searchObject.OrderBy);
-        //        }
-        //        else
-        //        {
-        //            query = query.OrderBy(string.Format("{0} {1}", item[0], item[1]));
-        //        }
-        //    }
-
-        //    if(searchObject?.Page.HasValue == true && searchObject?.PageSize.HasValue == true)
-        //    {
-        //        query = query.Skip(searchObject.Page.Value * searchObject.PageSize.Value).Take(searchObject.PageSize.Value);
-        //    }
-
-
-
-        //    var list = query.ToList();
-
-        //    List<Model.Users> konvertedList = new List<Model.Users>();
-
-        //    konvertedList = _mapper.Map(list, konvertedList);
-        //    //DA smo gore ostavili da je funkcija List<Model.Users> GetList a ne Model.PagedResult<Model.Users> GetList
-        //    //return konvertedList;
-
-        //    //ovo dole ide ako hocemo da idemo po novom 
-        //    Model.PagedResult<Model.Users> pagedListResult = new Model.PagedResult<Model.Users>();
-        //    pagedListResult.Count = count;
-        //    pagedListResult.ResultList = konvertedList;
-
-        //    return pagedListResult;
-        //}
 
         public override IQueryable<Database.Users> AddFilter(UsersSearchObject search, IQueryable<Database.Users> query)
         {
@@ -120,39 +52,21 @@ namespace eGostujucaPredavanja.Services
 
             if (search.IsUserPositionIncluded == true)
             {
-                query = query.Include(x => x.UserPositions).ThenInclude(x => x.Positions);
+                query = query.Include(x => x.UserPositions).ThenInclude(x => x.Position);
             }
 
             return query;
         }
 
-        //public Model.Users Insert(UsersInsertRequests request)
-        //{
-        //    if (request.Password != request.ConfirmPassword)
-        //    {
-        //        throw new Exception("Lozinka i lozinka potwrda moraju bit iste");
-        //    }
-        //    //istanciranje novog korisnika
-        //    Database.Users entity = new Database.Users();
-
-        //    _mapper.Map(request, entity);
-
-        //    entity.LozinkaSalt = GenerateSalt();
-        //    entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
-
-        //    _dbContext.Add(entity);
-        //    _dbContext.SaveChanges();
-
-        //    return _mapper.Map<Model.Users>(entity);
-        //}
-
         public override void BeforeInsert(UsersInsertRequests request, Database.Users entity)
         {
             _logger.LogInformation($"Befor insert add infor {entity.UserName}");
+
             if (request.Password != request.ConfirmPassword)
             {
                 throw new Exception("Lozinka i lozinka potwrda moraju bit iste");
             }
+
             entity.LozinkaSalt = GenerateSalt();
             entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
             base.BeforeInsert(request, entity);
@@ -240,7 +154,7 @@ namespace eGostujucaPredavanja.Services
 
         public Model.Users Login(string username, string password)
          {
-            var entity = _dbContext.Users.FirstOrDefault(u=>u.UserName == username);
+            var entity = _dbContext.Users.Include(u => u.UserPositions).ThenInclude(u => u.Position).FirstOrDefault(u=>u.UserName == username);
             if (entity == null)
             {
                 return null;
@@ -253,5 +167,6 @@ namespace eGostujucaPredavanja.Services
 
             return _mapper.Map<Model.Users>(entity);
         }
+
     }
 }

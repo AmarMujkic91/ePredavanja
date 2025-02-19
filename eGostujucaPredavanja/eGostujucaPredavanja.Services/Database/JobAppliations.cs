@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services.Database
 {
-    public class JobAppliations
+    public partial class JobAppliations
     {
         [Key]
         public int JobAppliationId { get; set; }

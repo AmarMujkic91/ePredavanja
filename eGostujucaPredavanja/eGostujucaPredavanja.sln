@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGostujucaPredavanja.API", "eGostujucaPredavanja.API\eGostujucaPredavanja.API.csproj", "{14624D61-1408-4C43-A4D6-47D9281978CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eGostujucaPredavanja.API", "eGostujucaPredavanja.API\eGostujucaPredavanja.API.csproj", "{14624D61-1408-4C43-A4D6-47D9281978CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGostujucaPredavanja.Model", "eGostujucaPredavanja.Model\eGostujucaPredavanja.Model.csproj", "{D7CEE00E-7E06-4AB1-949D-745B7AB27462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eGostujucaPredavanja.Model", "eGostujucaPredavanja.Model\eGostujucaPredavanja.Model.csproj", "{D7CEE00E-7E06-4AB1-949D-745B7AB27462}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGostujucaPredavanja.Services", "eGostujucaPredavanja.Services\eGostujucaPredavanja.Services.csproj", "{38532906-0B05-4062-B784-D0D14FE14F53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eGostujucaPredavanja.Services", "eGostujucaPredavanja.Services\eGostujucaPredavanja.Services.csproj", "{38532906-0B05-4062-B784-D0D14FE14F53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ePredavanjeSubscriber", "ePredavanjeSubscriber\ePredavanjeSubscriber.csproj", "{71733A72-E29F-4276-98AD-395094202F4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{081C1E50-7121-4CC1-970E-4E44FC053E1F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,10 @@ Global
 		{38532906-0B05-4062-B784-D0D14FE14F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38532906-0B05-4062-B784-D0D14FE14F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38532906-0B05-4062-B784-D0D14FE14F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71733A72-E29F-4276-98AD-395094202F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71733A72-E29F-4276-98AD-395094202F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71733A72-E29F-4276-98AD-395094202F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71733A72-E29F-4276-98AD-395094202F4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,6 @@
-﻿using eGostujucaPredavanja.Model.Requests;
+﻿using EasyNetQ;
+using eGostujucaPredavanja.Model.Messages;
+using eGostujucaPredavanja.Model.Requests;
 using eGostujucaPredavanja.Services.Database;
 using MapsterMapper;
 using System;
@@ -37,7 +39,23 @@ namespace eGostujucaPredavanja.Services.EventsStateMachine
 
             _dbContext.SaveChanges();
 
-            return _mapper.Map<Model.Events>(entity);
+            //Kada dode do primjene eventa nekog ubdata moramo javit korisnicima
+            //var bus = RabbitHutch.CreateBus("host=localhost:5672");
+
+            //var mappedEntity = _mapper.Map<Model.Events>(entity);
+
+            //EventUpdatet message = new EventUpdatet { eventDetails = mappedEntity };
+
+            //bus.PubSub.Publish(mappedEntity);
+            var bus = RabbitHutch.CreateBus("host=localhost:5672");
+
+            var messageEntity = _mapper.Map<Model.Events>(entity);
+
+            EventUpdatet message = new EventUpdatet { EventDetails = messageEntity };
+
+            bus.PubSub.PublishAsync(message);
+
+            return messageEntity;
         }
 
         public override Model.Events Activate(int id)

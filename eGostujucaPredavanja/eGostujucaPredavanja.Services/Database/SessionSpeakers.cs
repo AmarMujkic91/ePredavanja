@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services.Database
 {
-    public class SessionSpeakers
+    public partial class SessionSpeakers
     {
         [Key]
         public int SessionSpeakerId { get; set; }
@@ -16,8 +16,8 @@ namespace eGostujucaPredavanja.Services.Database
 
         public int SpeakerId { get; set; }
 
-        public virtual Sessions Sessions { get; set; } = null!;
+        public virtual Sessions Session { get; set; } = null!;
 
-        public virtual Speakers Speakers { get; set; } = null!;
+        public virtual Speakers Speaker { get; set; } = null!;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using eGostujucaPredavanja.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -35,7 +36,7 @@ namespace eGostujucaPredavanja.API
 
             var user = _usersService.Login(username, password);
 
-            if(user != null)
+            if(user == null)
             {
                 return AuthenticateResult.Fail("Auth Failed");
             }
@@ -46,6 +47,12 @@ namespace eGostujucaPredavanja.API
                     new Claim(ClaimTypes.Name,user.Firstname),
                     new Claim(ClaimTypes.NameIdentifier,user.UserName)
                 };
+
+                //vraca istu svih pozivija koji korisnik ima
+                foreach(var role in user.UserPositions)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role.Position.Name));
+                }
 
                 var identity = new ClaimsIdentity(claims, Scheme.Name);
 

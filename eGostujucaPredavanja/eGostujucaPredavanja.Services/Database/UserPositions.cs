@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services.Database
 {
-    public class UserPositions
+    public partial class UserPositions
     {
         [Key]
         public int UserPositionId { get; set; }
@@ -18,8 +18,8 @@ namespace eGostujucaPredavanja.Services.Database
 
         public DateTime DateOfChanges { get; set; }
 
-        public virtual Users Users { get; set; } = null!;
+        public virtual Users User { get; set; } = null!;
 
-        public virtual Positions Positions { get; set; } = null!;
+        public virtual Positions Position { get; set; } = null!;
     }
 }

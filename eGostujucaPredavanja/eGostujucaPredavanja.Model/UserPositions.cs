@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Model
 {
-    public class UserPositions
+    public partial class UserPositions
     {
         public int UserPositionId { get; set; }
 
@@ -16,6 +16,6 @@ namespace eGostujucaPredavanja.Model
 
         public DateTime DateOfChanges { get; set; }
 
-        public virtual Positions Positions { get; set; } = null!;
+        public virtual Positions Position { get; set; } = null!;
     }
 }

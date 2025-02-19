@@ -24,6 +24,6 @@ namespace eGostujucaPredavanja.Model
 
         public byte[]? Slika { get; set; }
 
-        public virtual ICollection<UserPositions> UserPositions { get; } = new List<UserPositions>();
+        public virtual ICollection<UserPositions> UserPositions { get; set; } = new List<UserPositions>();
     }
 }

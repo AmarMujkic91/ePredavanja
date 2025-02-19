@@ -37,10 +37,7 @@ namespace eGostujucaPredavanja.Services.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EventsEventId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SponsorsSponsorId")
+                    b.Property<int>("SponsorId")
                         .HasColumnType("int");
 
                     b.Property<int>("SponzorId")
@@ -48,9 +45,9 @@ namespace eGostujucaPredavanja.Services.Migrations
 
                     b.HasKey("EventSponsorId");
 
-                    b.HasIndex("EventsEventId");
+                    b.HasIndex("EventId");
 
-                    b.HasIndex("SponsorsSponsorId");
+                    b.HasIndex("SponsorId");
 
                     b.ToTable("EventSponsors");
                 });
@@ -259,20 +256,14 @@ namespace eGostujucaPredavanja.Services.Migrations
                     b.Property<int>("SessionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SessionsSessionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SpeakerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpeakersSpeakerId")
                         .HasColumnType("int");
 
                     b.HasKey("SessionSpeakerId");
 
-                    b.HasIndex("SessionsSessionId");
+                    b.HasIndex("SessionId");
 
-                    b.HasIndex("SpeakersSpeakerId");
+                    b.HasIndex("SpeakerId");
 
                     b.ToTable("SessionSpeakers");
                 });
@@ -426,20 +417,14 @@ namespace eGostujucaPredavanja.Services.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EventsEventId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersUserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserEventId");
 
-                    b.HasIndex("EventsEventId");
+                    b.HasIndex("EventId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserEvents");
                 });
@@ -458,20 +443,14 @@ namespace eGostujucaPredavanja.Services.Migrations
                     b.Property<int>("PositionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PositionsPositionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersUserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserPositionId");
 
-                    b.HasIndex("PositionsPositionId");
+                    b.HasIndex("PositionId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserPositions");
                 });
@@ -549,21 +528,21 @@ namespace eGostujucaPredavanja.Services.Migrations
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.EventSponsors", b =>
                 {
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Events", "Events")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Events", "Event")
                         .WithMany("EventSponsors")
-                        .HasForeignKey("EventsEventId")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Sponsors", "Sponsors")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Sponsors", "Sponsor")
                         .WithMany("EventSponsors")
-                        .HasForeignKey("SponsorsSponsorId")
+                        .HasForeignKey("SponsorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Events");
+                    b.Navigation("Event");
 
-                    b.Navigation("Sponsors");
+                    b.Navigation("Sponsor");
                 });
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.Events", b =>
@@ -609,21 +588,21 @@ namespace eGostujucaPredavanja.Services.Migrations
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.SessionSpeakers", b =>
                 {
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Sessions", "Sessions")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Sessions", "Session")
                         .WithMany("SessionSpeakers")
-                        .HasForeignKey("SessionsSessionId")
+                        .HasForeignKey("SessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Speakers", "Speakers")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Speakers", "Speaker")
                         .WithMany("SessionSpeakers")
-                        .HasForeignKey("SpeakersSpeakerId")
+                        .HasForeignKey("SpeakerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Sessions");
+                    b.Navigation("Session");
 
-                    b.Navigation("Speakers");
+                    b.Navigation("Speaker");
                 });
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.Sessions", b =>
@@ -635,40 +614,40 @@ namespace eGostujucaPredavanja.Services.Migrations
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.UserEvents", b =>
                 {
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Events", "Events")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Events", "Event")
                         .WithMany("UserEvents")
-                        .HasForeignKey("EventsEventId")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Users", "Users")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Users", "User")
                         .WithMany("UserEvents")
-                        .HasForeignKey("UsersUserId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Events");
+                    b.Navigation("Event");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.UserPositions", b =>
                 {
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Positions", "Positions")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Positions", "Position")
                         .WithMany("UserPositions")
-                        .HasForeignKey("PositionsPositionId")
+                        .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eGostujucaPredavanja.Services.Database.Users", "Users")
+                    b.HasOne("eGostujucaPredavanja.Services.Database.Users", "User")
                         .WithMany("UserPositions")
-                        .HasForeignKey("UsersUserId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Positions");
+                    b.Navigation("Position");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eGostujucaPredavanja.Services.Database.UserSessions", b =>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services.Database
 {
-    public class UserEvents
+    public partial class UserEvents
     {
         [Key]
         public int UserEventId { get; set; }
@@ -18,8 +18,8 @@ namespace eGostujucaPredavanja.Services.Database
 
         public byte CheckedIn { get; set; }
 
-        public virtual Events Events { get; set; } = null!;
+        public virtual Events Event { get; set; } = null!;
 
-        public virtual Users Users { get; set; } = null!;
+        public virtual Users User { get; set; } = null!;
     }
 }

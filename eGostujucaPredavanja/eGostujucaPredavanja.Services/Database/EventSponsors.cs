@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Services.Database
 {
-    public class EventSponsors
+    public partial class EventSponsors
     {
         [Key]
         public int EventSponsorId { get; set; }
@@ -18,8 +18,8 @@ namespace eGostujucaPredavanja.Services.Database
 
         public string BootNumber { get; set; }
 
-        public virtual Events Events { get; set; } = null!;
+        public virtual Events Event { get; set; } = null!;
 
-        public virtual Sponsors Sponsors { get; set; } = null!;
+        public virtual Sponsors Sponsor { get; set; } = null!;
     }
 }

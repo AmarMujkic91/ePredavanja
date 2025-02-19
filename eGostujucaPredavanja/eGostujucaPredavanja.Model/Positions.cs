@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eGostujucaPredavanja.Model
 {
-    public class Positions
+    public partial class Positions
     {
         public int PositionId { get; set; }
 

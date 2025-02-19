@@ -1,0 +1,36 @@
+version: '3'
+services:
+#mssql docker
+  epredavanje-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    expose:
+      - 1433
+    networks:
+      - epredavanjanet2025
+
+  epredavanje-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=epredavanje-sql,1433;Database=eGostujucaPredavanja;User=sa;Password=QWElkj132!;ConnectRetryCount=0; TrustServerCertificate=True
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5125:5125
+    networks:
+      - epredavanjanet2025
+    links:
+      - epredavanje-sql
+    depends_on:
+      - epredavanje-sql
+      
+networks:
+  epredavanjanet2025:
+    driver: bridge      

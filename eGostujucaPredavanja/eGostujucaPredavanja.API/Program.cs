@@ -15,11 +15,13 @@ var builder = WebApplication.CreateBuilder(args);
 //------------------------------------------------------Deklarisemo stanja u dependenci injeksenu ------------------------------------------------------------------------------
 builder.Services.AddTransient<IEventsService, EventsService>();
 builder.Services.AddTransient<IUsersService, UsersService>();
+builder.Services.AddTransient<IPositionsService, PositionsService>();
 //------------------------------------------------------ZA STATE MACHINE--------------------------------------------------------------------------------------------------------
 builder.Services.AddTransient<BaseEventState>();
 builder.Services.AddTransient<InitialEventState>();
 builder.Services.AddTransient<DraftEventState>();
 builder.Services.AddTransient<ActiveEventState>();
+builder.Services.AddTransient<HiddenEventState>();
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 builder.Services.AddControllers(x =>
@@ -78,5 +80,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var daraContext = scope.ServiceProvider.GetRequiredService<eGostujucaPredavanjaContext>();
+    daraContext.Database.Migrate();
+}
 
 app.Run();

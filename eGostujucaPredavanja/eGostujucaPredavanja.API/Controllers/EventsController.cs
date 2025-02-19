@@ -2,6 +2,7 @@
 using eGostujucaPredavanja.Model.Requests;
 using eGostujucaPredavanja.Model.SearchObject;
 using eGostujucaPredavanja.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGostujucaPredavanja.API.Controllers
@@ -37,6 +38,18 @@ namespace eGostujucaPredavanja.API.Controllers
         public List<string> AllowedActions(int id)
         {
             return (_service as IEventsService).AllowedActions(id);
+        }
+
+        [Authorize(Roles ="Admin")]
+        public override Events Insert(EventsUpsertRequests request)
+        {
+            return base.Insert(request);
+        }
+
+        [AllowAnonymous]
+        public override PagedResult<Events> GetList([FromQuery] EventsSearchObject searchObject)
+        {
+            return base.GetList(searchObject);
         }
 
         //Bez Naslijedenog Base Controler-a
